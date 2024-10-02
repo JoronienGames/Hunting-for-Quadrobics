@@ -4,6 +4,7 @@ var speed = 10
 var jump = 5
 var acceleration = 7
 
+var sensivity = 0.5
 
 @onready var head = $Head
 
@@ -33,7 +34,7 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		head.rotation.x -= deg_to_rad(event.relative.y)
+		head.rotation.x -= deg_to_rad(event.relative.y * sensivity)
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 		
-		rotation.y -= deg_to_rad(event.relative.x)
+		rotation.y -= deg_to_rad(event.relative.x * sensivity)
