@@ -1,7 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://611i8lfuhovf"]
+[gd_scene load_steps=3 format=3 uid="uid://611i8lfuhovf"]
 
 [ext_resource type="PackedScene" uid="uid://ck13alfefp1q7" path="res://Map3.fbx" id="1_kf1oq"]
+[ext_resource type="PackedScene" uid="uid://capfdhm6bi5xm" path="res://quadrobic.tscn" id="2_1h102"]
 
 [node name="Node3D" type="Node3D"]
 
 [node name="Map3" parent="." instance=ExtResource("1_kf1oq")]
+
+[node name="Quadrobic" parent="." instance=ExtResource("2_1h102")]
+transform = Transform3D(0.39, 0, 0, 0, 0.39, 0, 0, 0, 0.39, 10.2312, -0.0373226, -16.4562)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.301548, -0.342469, 0.889822, 0.034304, 0.936558, 0.348831, -0.952834, -0.074665, 0.294165, 16.5616, 2.64526, -15.4075)
