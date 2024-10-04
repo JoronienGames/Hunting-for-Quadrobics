@@ -9,6 +9,7 @@ var acceleration = 7
 var sensivity = 0.5
 
 @onready var head = $Head
+@onready var ray = $Head/Camera3D/RayCast3D
 
 var direction: Vector2
 # Called when the node enters the scene tree for the first time.
@@ -16,6 +17,7 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta: float) -> void:
+	# Move and jump
 	direction = Vector2(0,0)
 	
 	if Input.is_action_pressed("MoveForward"):
@@ -39,10 +41,19 @@ func _physics_process(delta: float) -> void:
 	if !is_on_floor():
 		velocity.y += gravity * delta
 
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
+	if Input.is_action_pressed("Jump") and is_on_floor():
 		velocity.y = jump
 
 	move_and_slide()
+	
+	# Shoot
+	if Input.is_action_just_pressed("Fire"):
+		shoot()
+func shoot():
+	if ray.is_colliding():
+		var object = ray.get_collider()
+		if object.is_in_group("enemy"):
+			object.hit(1)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
