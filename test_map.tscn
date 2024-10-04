@@ -1,18 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://611i8lfuhovf"]
+[gd_scene load_steps=7 format=3 uid="uid://611i8lfuhovf"]
 
 [ext_resource type="PackedScene" uid="uid://csei1552tddoy" path="res://map_3.tscn" id="1_ohwcr"]
 [ext_resource type="PackedScene" uid="uid://capfdhm6bi5xm" path="res://quadrobic.tscn" id="2_1h102"]
 [ext_resource type="PackedScene" uid="uid://v076iae7w1uv" path="res://Player.tscn" id="3_ottes"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tvtlg"]
+sky_top_color = Color(0.325593, 0.423293, 0.755368, 1)
+sky_horizon_color = Color(0.873096, 0.560798, 0.513989, 1)
+
+[sub_resource type="Sky" id="Sky_d16ga"]
+sky_material = SubResource("ProceduralSkyMaterial_tvtlg")
+
+[sub_resource type="Environment" id="Environment_2b5qk"]
+background_mode = 2
+sky = SubResource("Sky_d16ga")
+
 [node name="Node3D" type="Node3D"]
 
-[node name="Map4" parent="." instance=ExtResource("1_ohwcr")]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2b5qk")
 
-[node name="Quadrobic" parent="." instance=ExtResource("2_1h102")]
+[node name="Map4" parent="WorldEnvironment" instance=ExtResource("1_ohwcr")]
+
+[node name="Quadrobic" parent="WorldEnvironment" instance=ExtResource("2_1h102")]
 transform = Transform3D(0.39, 0, 0, 0, 0.39, 0, 0, 0, 0.39, 10.2312, -0.0373226, -16.4562)
 
-[node name="Player" parent="." instance=ExtResource("3_ottes")]
+[node name="Player" parent="WorldEnvironment" instance=ExtResource("3_ottes")]
 transform = Transform3D(-0.207985, 0, 2.16001, 0, 2.17, 0, -2.16001, 0, -0.207985, 18.1278, 8.66792, -22.434)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.912034, 0.410114, 1.49012e-08, -0.143397, 0.318894, 0.93688, 0.384228, -0.854467, 0.349652, 0, 53.0362, 23.1143)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.748953, 0.410114, 0.520458, -0.652392, 0.318894, 0.687525, 0.115993, -0.854466, 0.506392, 0, 53.0362, 23.1143)
