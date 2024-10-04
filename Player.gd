@@ -1,7 +1,9 @@
 extends CharacterBody3D
 
 var speed = 10
-var jump = 5
+var runSpeed = 25
+var jump : float = 60
+var gravity = -100
 var acceleration = 7
 
 var sensivity = 0.5
@@ -27,9 +29,19 @@ func _physics_process(delta: float) -> void:
 	
 	direction = direction.normalized().rotated(-rotation.y)
 	
-	velocity.x = lerp(velocity.x, direction.x * speed, delta * acceleration)
-	velocity.z = lerp(velocity.z, direction.y * speed, delta * acceleration)
-	
+	if Input.is_action_pressed("Run"):
+		velocity.x = lerp(velocity.x, direction.x * runSpeed, delta * acceleration)
+		velocity.z = lerp(velocity.z, direction.y * runSpeed, delta * acceleration)
+	else:
+		velocity.x = lerp(velocity.x, direction.x * speed, delta * acceleration)
+		velocity.z = lerp(velocity.z, direction.y * speed, delta * acceleration)
+
+	if !is_on_floor():
+		velocity.y += gravity * delta
+
+	if Input.is_action_just_pressed("Jump") and is_on_floor():
+		velocity.y = jump
+
 	move_and_slide()
 
 func _input(event: InputEvent) -> void:
