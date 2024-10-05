@@ -1,15 +1,27 @@
 extends CharacterBody3D
 
 @onready var AnimPlayer = $AnimationPlayer
+@onready var nav_agent = $NavigationAgent3D
 var health = 10
-# Called when the node enters the scene tree for the first time.
+var speed = 10
+func _physics_process(delta: float) -> void:
+	var current_location = global_transform.origin
+	var next_location = nav_agent.get_next_path_position()
+	
+	var direction = (next_location - current_location).normalized()
+	velocity = direction * speed
+	
+	move_and_slide()
+
+func update_target_location(target_location):
+	nav_agent.target_position = target_location
+
 func _ready() -> void:
 	AnimPlayer.play("Walk")
 	add_to_group("enemy")
- # Replace with function body.
 
-func hit(damage):
-	health -= damage
+func damage(count):
+	health -= count
 	print("Health: " + str(health))
 	if health <= 0:
 		death()

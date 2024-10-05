@@ -11,6 +11,8 @@ var max_patrons = 10
 
 var sensivity = 0.5
 
+var health = 20
+
 @onready var head = $Head
 @onready var ray = $Head/Camera3D/RayCast3D
 
@@ -60,12 +62,13 @@ func shoot():
 		if ray.is_colliding():
 			var object = ray.get_collider()
 			if object.is_in_group("enemy"):
-				object.hit(1)
+				object.damage(1)
 		patrons -= 1
-		print(patrons)
+		print("Patrons: " + str(patrons))
 
 func reload():
 	patrons = max_patrons
+	print("Reload")
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -73,3 +76,12 @@ func _input(event: InputEvent) -> void:
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 		
 		rotation.y -= deg_to_rad(event.relative.x * sensivity)
+
+func damage(count):
+	health -= count
+	print("Health: " + str(health))
+	if health <= 0:
+		death()
+	
+func death():
+	queue_free()
