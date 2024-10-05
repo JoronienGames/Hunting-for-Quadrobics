@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func hit(damage):
 	health -= damage
-	print(health)
+	print("Health: " + str(health))
 	if health <= 0:
 		death()
 	

@@ -6,6 +6,9 @@ var jump : float = 60
 var gravity = -100
 var acceleration = 7
 
+var patrons = 10
+var max_patrons = 10
+
 var sensivity = 0.5
 
 @onready var head = $Head
@@ -38,22 +41,31 @@ func _physics_process(delta: float) -> void:
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * acceleration)
 		velocity.z = lerp(velocity.z, direction.y * speed, delta * acceleration)
 
-	if !is_on_floor():
-		velocity.y += gravity * delta
-
 	if Input.is_action_pressed("Jump") and is_on_floor():
 		velocity.y = jump
-
-	move_and_slide()
 	
+	# Gravity
+	if !is_on_floor():
+		velocity.y += gravity * delta
+	move_and_slide()
 	# Shoot
 	if Input.is_action_just_pressed("Fire"):
 		shoot()
+	
+	if Input.is_action_just_pressed("Reload"):
+		reload()
+		
 func shoot():
-	if ray.is_colliding():
-		var object = ray.get_collider()
-		if object.is_in_group("enemy"):
-			object.hit(1)
+	if patrons != 0:
+		if ray.is_colliding():
+			var object = ray.get_collider()
+			if object.is_in_group("enemy"):
+				object.hit(1)
+		patrons -= 1
+		print(patrons)
+
+func reload():
+	patrons = max_patrons
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
