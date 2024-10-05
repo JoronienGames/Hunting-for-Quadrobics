@@ -41,3 +41,5 @@ bones/12/position = Vector3(-0.110888, 2.04103, -2.65512e-07)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05348, 3.36069, -0.615463)
 shape = SubResource("BoxShape3D_vmv3r")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="3"]
