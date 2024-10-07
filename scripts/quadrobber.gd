@@ -1,9 +1,8 @@
-extends CharacterBody3D
+extends "res://scripts/entity.gd"
 
 @onready var AnimPlayer = $AnimationPlayer
 @onready var nav_agent = $NavigationAgent3D
-var health = 10
-var speed = 10
+
 var target_player
 func _physics_process(delta: float) -> void:
 	var current_location = global_transform.origin
@@ -21,16 +20,8 @@ func update_target_location(target):
 func _ready() -> void:
 	AnimPlayer.play("Walk")
 	add_to_group("enemy")
-
-func damage(count):
-	health -= count
-	print("Health: " + str(health))
-	if health <= 0:
-		death()
 	
-func death():
-	queue_free()
-
+	health = 10
 
 func _on_timer_timeout() -> void:
 	if (global_position - target_player.global_position).length() <= 5:

@@ -1,6 +1,5 @@
-extends CharacterBody3D
+extends "res://scripts/entity.gd"
 
-var speed = 10
 var runSpeed = 25
 var jump : float = 60
 var gravity = -100
@@ -11,8 +10,6 @@ var max_patrons = 10
 
 var sensivity = 0.5
 
-var health = 20
-
 @onready var head = $Head
 @onready var ray = $Head/Camera3D/RayCast3D
 
@@ -20,6 +17,9 @@ var direction: Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	health = 20
+	speed = 10
 
 func _physics_process(delta: float) -> void:
 	# Move and jump
@@ -77,12 +77,6 @@ func _input(event: InputEvent) -> void:
 		
 		rotation.y -= deg_to_rad(event.relative.x * sensivity)
 
-func damage(count):
-	health -= count
-	print("Health: " + str(health))
-	if health <= 0:
-		death()
-	
 func death():
 	print("Game Over!")
 	get_tree().quit()
