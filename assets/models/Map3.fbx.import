@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ck13alfefp1q7"
-path="res://.godot/imported/Map3.fbx-2cf6cf633f4800e73d4f4707e7ccac02.scn"
+path="res://.godot/imported/Map3.fbx-cc0238081637f07671459692c5d500ba.scn"
 
 [deps]
 
-source_file="res://Map3.fbx"
-dest_files=["res://.godot/imported/Map3.fbx-2cf6cf633f4800e73d4f4707e7ccac02.scn"]
+source_file="res://assets/models/Map3.fbx"
+dest_files=["res://.godot/imported/Map3.fbx-cc0238081637f07671459692c5d500ba.scn"]
 
 [params]
 

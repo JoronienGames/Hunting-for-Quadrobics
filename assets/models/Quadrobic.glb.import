@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ccbtcd3hdnjdq"
-path="res://.godot/imported/Quadrobic.glb-5ec3ee703b69f4670b748a5ea79410f1.scn"
+path="res://.godot/imported/Quadrobic.glb-15d7ba470e90d6a8ead62474bc9c804d.scn"
 
 [deps]
 
-source_file="res://Quadrobic.glb"
-dest_files=["res://.godot/imported/Quadrobic.glb-5ec3ee703b69f4670b748a5ea79410f1.scn"]
+source_file="res://assets/models/Quadrobic.glb"
+dest_files=["res://.godot/imported/Quadrobic.glb-15d7ba470e90d6a8ead62474bc9c804d.scn"]
 
 [params]
 

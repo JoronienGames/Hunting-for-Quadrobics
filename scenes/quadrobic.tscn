@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://capfdhm6bi5xm"]
 
-[ext_resource type="PackedScene" uid="uid://ccbtcd3hdnjdq" path="res://Quadrobic.glb" id="1_akukh"]
-[ext_resource type="Script" path="res://quadrobic.gd" id="2_go4ge"]
+[ext_resource type="PackedScene" uid="uid://ccbtcd3hdnjdq" path="res://assets/models/Quadrobic.glb" id="1_akukh"]
+[ext_resource type="Script" path="res://scripts/quadrobic.gd" id="2_go4ge"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vmv3r"]
 size = Vector3(6.66379, 6.77887, 3.95206)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://csei1552tddoy"]
 
-[ext_resource type="PackedScene" uid="uid://ck13alfefp1q7" path="res://Map3.fbx" id="1_foaut"]
+[ext_resource type="PackedScene" uid="uid://ck13alfefp1q7" path="res://assets/models/Map3.fbx" id="1_foaut"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_53e5x"]
 size = Vector3(160, 1, 80)
