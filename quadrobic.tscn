@@ -43,3 +43,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05348, 3.36069, -0.615463)
 shape = SubResource("BoxShape3D_vmv3r")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="3"]
+
+[node name="Timer" type="Timer" parent="." index="4"]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -84,4 +84,5 @@ func damage(count):
 		death()
 	
 func death():
-	queue_free()
+	print("Game Over!")
+	get_tree().quit()
