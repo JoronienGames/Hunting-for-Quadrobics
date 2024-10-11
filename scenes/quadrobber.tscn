@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://capfdhm6bi5xm"]
+[gd_scene load_steps=6 format=3 uid="uid://capfdhm6bi5xm"]
 
 [ext_resource type="PackedScene" uid="uid://ccbtcd3hdnjdq" path="res://assets/models/Quadrobic.glb" id="1_akukh"]
 [ext_resource type="Script" path="res://scripts/quadrobber.gd" id="2_go4ge"]
@@ -6,7 +6,14 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_vmv3r"]
 size = Vector3(6.66379, 6.77887, 3.95206)
 
-[node name="Quadrobic" instance=ExtResource("1_akukh")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_rhbkc"]
+radius = 25.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_btsfj"]
+radius = 55.0
+
+[node name="Quadrobber" instance=ExtResource("1_akukh")]
+floor_snap_length = 0.0
 script = ExtResource("2_go4ge")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
@@ -47,4 +54,18 @@ shape = SubResource("BoxShape3D_vmv3r")
 [node name="Timer" type="Timer" parent="." index="4"]
 autostart = true
 
+[node name="PlayerDetectZone" type="Area3D" parent="." index="5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetectZone" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.897126, 3.61786, -0.674578)
+shape = SubResource("SphereShape3D_rhbkc")
+
+[node name="PlayerExitZone" type="Area3D" parent="." index="6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerExitZone" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.897126, 3.61786, -0.674578)
+shape = SubResource("SphereShape3D_btsfj")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="PlayerDetectZone" to="." method="_on_player_detect_zone_body_entered"]
+[connection signal="body_exited" from="PlayerExitZone" to="." method="_on_player_exit_zone_body_exited"]

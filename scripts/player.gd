@@ -16,6 +16,7 @@ var sensivity = 0.5
 var direction: Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	add_to_group("player")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	health = 20
