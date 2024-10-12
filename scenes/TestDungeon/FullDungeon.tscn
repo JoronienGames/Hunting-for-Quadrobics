@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://fg6axnlqxu5a"]
+
+[ext_resource type="Script" path="res://scripts/full_dungeon.gd" id="1_82nm1"]
+[ext_resource type="PackedScene" uid="uid://ds6todf1563e1" path="res://scenes/TestDungeon/fd_2.tscn" id="2_bbw7w"]
+[ext_resource type="PackedScene" uid="uid://dv3wmwy5tfdvt" path="res://scenes/TestDungeon/fd_left_2.tscn" id="3_l375y"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hig6x"]
+
+[sub_resource type="Sky" id="Sky_kewyd"]
+sky_material = SubResource("ProceduralSkyMaterial_hig6x")
+
+[sub_resource type="Environment" id="Environment_coga2"]
+background_mode = 2
+sky = SubResource("Sky_kewyd")
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("start_room")]
+script = ExtResource("1_82nm1")
+start_room = NodePath("WorldEnvironment/Fd-Left2")
+rooms = Array[Resource]([ExtResource("2_bbw7w"), ExtResource("3_l375y")])
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_coga2")
+
+[node name="Camera3D" type="Camera3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 12.1543, -2.27203)
+
+[node name="Fd-Left2" parent="WorldEnvironment" instance=ExtResource("3_l375y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.876735, 0.480973, 0, -0.24451, -0.445702, 0.861142, 0.414186, 0.754993, 0.508365, 18.3031, 21.6792, 38.5844)

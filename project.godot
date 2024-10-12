@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Hunting For Quadrobics"
-run/main_scene="res://scenes/test_map.tscn"
+run/main_scene="res://scenes/TestDungeon/FullDungeon.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 
 [global_group]

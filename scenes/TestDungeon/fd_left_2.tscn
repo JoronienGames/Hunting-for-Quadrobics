@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv3wmwy5tfdvt"]
+
+[ext_resource type="PackedScene" uid="uid://drmhs75yjenx4" path="res://assets/models/TestDungeonRooms/Fd-Left.glb" id="1_07w4l"]
+[ext_resource type="Script" path="res://scripts/Room.gd" id="2_hrj5j"]
+
+[node name="Fd-Left2" node_paths=PackedStringArray("marker") instance=ExtResource("1_07w4l")]
+script = ExtResource("2_hrj5j")
+marker = NodePath("Marker3D")
+
+[node name="Marker3D" type="Marker3D" parent="." index="1"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3, 0, -3)
