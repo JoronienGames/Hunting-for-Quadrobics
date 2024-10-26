@@ -1,5 +1,7 @@
 extends "res://scripts/entity.gd"
 
+class_name Player
+
 var runSpeed = 25
 var jump : float = 60
 var gravity = -100
@@ -8,7 +10,7 @@ var acceleration = 7
 var patrons = 10
 var max_patrons = 10
 
-var sensivity = 0.5
+var sensivity = 0.3
 
 @onready var head = $Head
 @onready var ray = $Head/Camera3D/RayCast3D
@@ -19,6 +21,7 @@ func _ready() -> void:
 	add_to_group("player")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
+	max_health = 20
 	health = 20
 	speed = 10
 

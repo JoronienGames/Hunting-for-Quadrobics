@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+var max_health : int = 10
 var health: int = 10
 var speed: int = 10
 
