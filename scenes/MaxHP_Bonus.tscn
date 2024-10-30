@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://ts5opslx5je"]
+
+[ext_resource type="PackedScene" uid="uid://uuumr8tbswtv" path="res://scenes/bonus.tscn" id="1_kb25n"]
+[ext_resource type="Script" path="res://scripts/max_hp_bonus.gd" id="2_g164j"]
+
+[node name="Bonus" instance=ExtResource("1_kb25n")]
+script = ExtResource("2_g164j")

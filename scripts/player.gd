@@ -84,3 +84,10 @@ func _input(event: InputEvent) -> void:
 func death():
 	print("Game Over!")
 	get_tree().quit()
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body is Bonus:
+		if body is MaxHPBonus:
+			max_health *= body.multiplier
+		body.queue_free()

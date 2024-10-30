@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://uuumr8tbswtv"]
+
+[ext_resource type="PackedScene" uid="uid://c6q8uwk02b8ui" path="res://assets/models/Bonus.glb" id="1_45ss2"]
+[ext_resource type="Script" path="res://scripts/bonus.gd" id="2_eb5hp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xbqma"]
+radius = 2.0
+
+[node name="Bonus" instance=ExtResource("1_45ss2")]
+script = ExtResource("2_eb5hp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.821849, 0)
+shape = SubResource("SphereShape3D_xbqma")

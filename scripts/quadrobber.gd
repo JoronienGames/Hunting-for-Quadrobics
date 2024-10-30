@@ -3,6 +3,7 @@ extends "res://scripts/entity.gd"
 @onready var AnimPlayer = $AnimationPlayer
 @onready var nav_agent = $NavigationAgent3D
 
+@export var _bonus : Resource
 
 var target_player: CharacterBody3D
 func _physics_process(delta: float) -> void:
@@ -24,6 +25,15 @@ func _ready() -> void:
 	add_to_group("enemy")
 	
 	health = 10
+
+func death():
+	var bonus : Bonus = _bonus.instantiate()
+	get_parent().add_child(bonus)
+	bonus.position = global_position
+	
+	if bonus is MaxHPBonus:
+		bonus.multiplier = 3.0
+	super()
 
 func _on_timer_timeout() -> void:
 	if target_player != null and (global_position - target_player.global_position).length() <= 5:

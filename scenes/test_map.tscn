@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://611i8lfuhovf"]
+[gd_scene load_steps=12 format=3 uid="uid://611i8lfuhovf"]
 
 [ext_resource type="PackedScene" uid="uid://csei1552tddoy" path="res://scenes/map_3.tscn" id="1_ohwcr"]
 [ext_resource type="PackedScene" uid="uid://capfdhm6bi5xm" path="res://scenes/quadrobber.tscn" id="2_1h102"]
+[ext_resource type="PackedScene" uid="uid://ts5opslx5je" path="res://scenes/MaxHP_Bonus.tscn" id="3_13exo"]
 [ext_resource type="PackedScene" uid="uid://v076iae7w1uv" path="res://scenes/player.tscn" id="3_ottes"]
 [ext_resource type="Script" path="res://scripts/PlayerHUD.gd" id="4_qxumm"]
 
@@ -39,6 +40,7 @@ navigation_mesh = SubResource("NavigationMesh_74tjo")
 
 [node name="Quadrobber" parent="WorldEnvironment" instance=ExtResource("2_1h102")]
 transform = Transform3D(0.39, 0, 0, 0, 0.39, 0, 0, 0, 0.39, 0, -1.1246, 0)
+_bonus = ExtResource("3_13exo")
 
 [node name="Player" parent="WorldEnvironment" instance=ExtResource("3_ottes")]
 transform = Transform3D(-0.207985, 0, 2.16001, 0, 2.17, 0, -2.16001, 0, -0.207985, 18.1278, 8.66792, -22.434)
@@ -47,11 +49,12 @@ transform = Transform3D(-0.207985, 0, 2.16001, 0, 2.17, 0, -2.16001, 0, -0.20798
 transform = Transform3D(0.748953, 0.410114, 0.520458, -0.652392, 0.318894, 0.687525, 0.115993, -0.854466, 0.506392, 0, 53.0362, 23.1143)
 shadow_enabled = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "HP_bar", "Patrons_label")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "HP_bar", "Patrons_label", "MaxHPLabel")]
 script = ExtResource("4_qxumm")
 player = NodePath("../WorldEnvironment/Player")
 HP_bar = NodePath("VBoxContainer/ProgressBar")
 Patrons_label = NodePath("Patrons")
+MaxHPLabel = NodePath("VBoxContainer/HBoxContainer/Label2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 offset_right = 290.0
