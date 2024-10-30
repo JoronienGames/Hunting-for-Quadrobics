@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://csei1552tddoy" path="res://scenes/map_3.tscn" id="1_ohwcr"]
 [ext_resource type="PackedScene" uid="uid://capfdhm6bi5xm" path="res://scenes/quadrobber.tscn" id="2_1h102"]
 [ext_resource type="PackedScene" uid="uid://v076iae7w1uv" path="res://scenes/player.tscn" id="3_ottes"]
-[ext_resource type="Script" path="res://scripts/hp_bar.gd" id="4_w1q2y"]
+[ext_resource type="Script" path="res://scripts/PlayerHUD.gd" id="4_qxumm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tvtlg"]
 sky_top_color = Color(0.325593, 0.423293, 0.755368, 1)
@@ -47,14 +47,35 @@ transform = Transform3D(-0.207985, 0, 2.16001, 0, 2.17, 0, -2.16001, 0, -0.20798
 transform = Transform3D(0.748953, 0.410114, 0.520458, -0.652392, 0.318894, 0.687525, 0.115993, -0.854466, 0.506392, 0, 53.0362, 23.1143)
 shadow_enabled = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("player", "HP_bar", "Patrons_label")]
+script = ExtResource("4_qxumm")
+player = NodePath("../WorldEnvironment/Player")
+HP_bar = NodePath("VBoxContainer/ProgressBar")
+Patrons_label = NodePath("Patrons")
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
-offset_right = 392.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 290.0
 offset_bottom = 80.0
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 show_percentage = false
-script = ExtResource("4_w1q2y")
-player = NodePath("../../WorldEnvironment/Player")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "20
+"
+horizontal_alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 anchors_preset = 8
@@ -70,3 +91,16 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_2sne7")
 expand_mode = 1
+
+[node name="Patrons" type="Label" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -222.0
+offset_top = -150.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 55
+text = "0/0"
