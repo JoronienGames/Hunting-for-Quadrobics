@@ -12,18 +12,20 @@ var max_patrons = 10
 
 var sensivity = 0.3
 
-@onready var head = $Head
-@onready var ray = $Head/Camera3D/RayCast3D
+@export var head : Node3D
+@export var ray : RayCast3D
+
+@export var RegenerationTimer : Timer
+@export var RegenTimeAfterDamage : float
+@export var RegenTime : float
+@export var RegenHPCount : int
 
 var direction: Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super()
 	add_to_group("player")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-	max_health = 20
-	health = 20
-	speed = 10
 
 func _physics_process(delta: float) -> void:
 	# Move and jump
@@ -85,9 +87,17 @@ func death():
 	print("Game Over!")
 	get_tree().quit()
 
+func damage(count):
+	super(count)
+	RegenerationTimer.start(RegenTimeAfterDamage)
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is Bonus:
 		if body is MaxHPBonus:
 			max_health *= body.multiplier
 		body.queue_free()
+
+
+func _on_regeneration_timer_timeout() -> void:
+	health += RegenHPCount
+	RegenerationTimer.start(RegenTime)

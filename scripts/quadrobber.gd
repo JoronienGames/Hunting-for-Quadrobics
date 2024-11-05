@@ -1,7 +1,7 @@
 extends "res://scripts/entity.gd"
 
-@onready var AnimPlayer = $AnimationPlayer
-@onready var nav_agent = $NavigationAgent3D
+@export var AnimPlayer : AnimationPlayer
+@export var nav_agent : NavigationAgent3D
 
 @export var _bonus : Resource
 
@@ -21,10 +21,10 @@ func update_target_location(target):
 	nav_agent.target_position = target.global_position
 	
 func _ready() -> void:
+	super()
+	
 	AnimPlayer.play("Walk")
 	add_to_group("enemy")
-	
-	health = 10
 
 func death():
 	var bonus : Bonus = _bonus.instantiate()
